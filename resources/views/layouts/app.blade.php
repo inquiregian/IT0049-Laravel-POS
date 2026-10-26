@@ -103,7 +103,7 @@
 </div>
 
 <div class="footer">
-    Laravel POS System | IT0049 TFA5
+    Laravel POS System | IT0049
 </div>
 
 </body>
