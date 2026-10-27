@@ -3,108 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laravel POS</title>
+    <title>Laravel POS | IT0049</title>
 
     <style>
+        :root {
+            --text: #1e293b;
+            --muted: #64748b;
+            --accent: #0f766e;
+            --accent-light: #ccfbf1;
+            --page-bg: #f5f7fa;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--page-bg);
+            color: var(--text);
             font-family: Arial, Helvetica, sans-serif;
-            background: #f4f6f9;
-            color: #333;
+            line-height: 1.6;
         }
 
         .navbar {
-            background: #2c3e50;
-            padding: 15px 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
         }
 
-        .navbar a {
-            color: white;
+        .nav-inner {
+            width: min(1100px, calc(100% - 40px));
+            min-height: 72px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            font-size: 19px;
+            font-weight: 700;
             text-decoration: none;
-            margin-right: 20px;
-            font-weight: bold;
+            white-space: nowrap;
         }
 
-        .navbar a:hover {
-            color: #3498db;
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        .brand span:last-child {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .nav-links a {
+            padding: 9px 13px;
+            border-radius: 8px;
+            color: #475569;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            background: var(--accent-light);
+            color: var(--accent);
+            outline: none;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            background: white;
+            width: min(1000px, calc(100% - 40px));
+            margin: 36px auto;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,.1);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--surface);
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
         }
 
         h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 25px;
+            margin-bottom: 22px;
+            color: #172033;
+            font-size: clamp(24px, 4vw, 30px);
+            line-height: 1.25;
+        }
+
+        .card {
+            padding: 22px 24px;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            border-radius: 10px;
+            background: #fbfcfd;
+            line-height: 1.8;
+        }
+
+        .card p + p {
+            margin-top: 14px;
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border: 1px solid var(--border);
+            border-spacing: 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 13px 16px;
+            text-align: left;
         }
 
         th {
-            background: #3498db;
-            color: white;
-            padding: 15px;
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 700;
         }
 
         td {
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
+            border-top: 1px solid var(--border);
+            color: #334155;
+            font-size: 14px;
         }
 
-        tr:nth-child(even) {
-            background: #f8f9fa;
+        tbody tr:nth-child(even) {
+            background: #fafbfc;
         }
 
-        tr:hover {
-            background: #eef6ff;
-        }
-
-        .card {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 5px solid #3498db;
+        tbody tr:hover {
+            background: #f0fdfa;
         }
 
         .footer {
+            margin-top: auto;
+            padding: 18px 16px;
+            color: var(--muted);
+            font-size: 13px;
             text-align: center;
-            margin-top: 25px;
-            color: #666;
-            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .nav-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+                padding: 14px 0;
+            }
+
+            .nav-links {
+                width: 100%;
+            }
+
+            .nav-links a {
+                padding: 8px 10px;
+            }
+
+            .container {
+                width: calc(100% - 24px);
+                margin: 20px auto;
+                padding: 22px 16px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="navbar">
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/customers">Customers</a>
-    <a href="/users">Users</a>
-</div>
+<header class="navbar">
+    <div class="nav-inner">
+        <a class="brand" href="/">
+            <span class="brand-mark">P</span>
+            <span>Laravel <span>POS</span></span>
+        </a>
 
-<div class="container">
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/customers">Customers</a>
+            <a href="/users">Users</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
     @yield('content')
-</div>
+</main>
 
-<div class="footer">
+<footer class="footer">
     Laravel POS System | IT0049
-</div>
+</footer>
 
 </body>
 </html>
