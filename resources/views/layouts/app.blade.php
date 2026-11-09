@@ -231,7 +231,7 @@
 </main>
 
 <footer class="footer">
-    Laravel POS System | IT0049
+    Laravel POS System | IT0049 TFA5
 </footer>
 
 </body>
