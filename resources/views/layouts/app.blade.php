@@ -10,10 +10,13 @@
             --text: #1e293b;
             --muted: #64748b;
             --accent: #0f766e;
+            --accent-dark: #115e59;
             --accent-light: #ccfbf1;
             --page-bg: #f5f7fa;
             --surface: #ffffff;
             --border: #e2e8f0;
+            --danger: #b91c1c;
+            --danger-bg: #fef2f2;
         }
 
         * {
@@ -138,6 +141,7 @@
         td {
             padding: 13px 16px;
             text-align: left;
+            vertical-align: middle;
         }
 
         th {
@@ -159,6 +163,124 @@
 
         tbody tr:hover {
             background: #f0fdfa;
+        }
+
+        /* Create links */
+        a[href$="/create"] {
+            display: inline-block;
+            margin: 0 0 18px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        a[href$="/create"]:hover {
+            background: var(--accent-dark);
+        }
+
+        /* Edit links */
+        table td a {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        table td a:hover {
+            color: var(--accent-dark);
+        }
+
+        /* Forms */
+        form {
+            max-width: 560px;
+            margin-top: 24px;
+            display: grid;
+            gap: 18px;
+        }
+
+        form div {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        form label {
+            color: #243b53;
+            font-weight: 600;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="file"] {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #243b53;
+            font: inherit;
+        }
+
+        form input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+        }
+
+        form button {
+            width: fit-content;
+            padding: 11px 18px;
+            border: none;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #ffffff;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        form button:hover {
+            background: var(--accent-dark);
+        }
+
+        form a {
+            width: fit-content;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        form a:hover {
+            text-decoration: underline;
+        }
+
+        form img {
+            width: 100px;
+            height: 100px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        form small {
+            color: var(--muted);
+        }
+
+        /* Validation and success messages */
+        form ul {
+            margin: 8px 0 0 20px;
+            color: var(--danger);
+        }
+
+        form strong {
+            color: var(--danger);
+        }
+
+        p {
+            color: var(--text);
         }
 
         .footer {
@@ -196,6 +318,10 @@
                 overflow-x: auto;
                 white-space: nowrap;
             }
+
+            form {
+                max-width: 100%;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -231,7 +357,7 @@
 </main>
 
 <footer class="footer">
-    Laravel POS System | IT0049 TFA5
+    Laravel POS System | IT0049 TFA7
 </footer>
 
 </body>
