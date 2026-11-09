@@ -2,44 +2,56 @@
 
 @section('content')
 
-<h1>Customer Accounts</h1>
+<h1>Create Customer</h1>
 
-@if (session('success'))
-    <p>{{ session('success') }}</p>
+@if ($errors->any())
+    <div>
+        <strong>Please correct the following errors:</strong>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 
-<a href="{{ route('customers.create') }}">Create Customer</a>
+<form action="{{ route('customers.store') }}" method="POST">
+    @csrf
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+    <div>
+        <label for="full_name">Full Name</label>
+        <input
+            type="text"
+            id="full_name"
+            name="full_name"
+            value="{{ old('full_name') }}"
+            required
+        >
+    </div>
 
-    <tbody>
-    @forelse($customers as $customer)
-        <tr>
-            <td>{{ $customer->id }}</td>
-            <td>{{ $customer->full_name }}</td>
-            <td>{{ $customer->email }}</td>
-            <td>{{ $customer->phone }}</td>
-            <td>
-                <a href="{{ route('customers.edit', $customer) }}">
-                    Edit
-                </a>
-            </td>
-        </tr>
-    @empty
-        <tr>
-            <td colspan="5">No customers found.</td>
-        </tr>
-    @endforelse
-    </tbody>
-</table>
+    <div>
+        <label for="email">Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            value="{{ old('email') }}"
+            required
+        >
+    </div>
+
+    <div>
+        <label for="phone">Phone</label>
+        <input
+            type="text"
+            id="phone"
+            name="phone"
+            value="{{ old('phone') }}"
+        >
+    </div>
+
+    <button type="submit">Create Customer</button>
+    <a href="{{ route('customers.index') }}">Cancel</a>
+</form>
 
 @endsection
