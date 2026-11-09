@@ -11,5 +11,6 @@ class UserAccount extends Model
     protected $fillable = [
         'username',
         'full_name',
+        'avatar',
     ];
 }
